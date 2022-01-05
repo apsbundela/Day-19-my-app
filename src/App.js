@@ -1,34 +1,43 @@
 import { useState } from "react";
-
 export default function App() {
   return (
     <div>
-      <Mycompenent></Mycompenent>
+      <Mycomponent></Mycomponent>
     </div>
   );
 }
 
-function Mycompenent() {
-  
-  let[counter,setcounter] = useState(1)
+function Mycomponent() {
+  const [msg,setMsg] = useState();
+  const [list ,setlist] = useState([])
 
-  const increment = ()=>{
-
-    counter = counter+1;
-    setcounter(counter)
+  const changeMsg = (e)=>{
+    setMsg(e.target.value);
   }
 
-  const decrement = ()=>{
-
-      counter = counter-1;
-      setcounter(counter);
+  const tweet= ()=>{
+      const newlist = [msg, ...list];
+    setlist(newlist);
+    setMsg("")
   }
 
+  const deleteTweet = ()=>{
+      list.splice(0,1);
+      setlist([...list]);
+  }
   return (
     <div>
-      <div><h1>{counter}</h1></div>
-      <input type="button" value="Counter &#128077;" onClick={increment}/>
-      <input type="button" value="Counter &#128078;" onClick={decrement}/>
+      <div>
+        <h1>Working with Input and delete event</h1>
+        <input type="text" value={msg} onChange={changeMsg} />
+        <input type="button" value="Tweet" onClick={tweet} />
+        <input type="button"  value="Delete tweet" onClick={deleteTweet}/>
+        <div id="parent">
+        {list.map((item) => (
+          <div>{item}</div>
+        ))}
+      </div>
+      </div>
     </div>
   );
 }
