@@ -9,29 +9,23 @@ export default function App() {
 }
 
 function Mycomponent() {
-  let [msg, setmsg] = useState("");
-  let [list, setlist] = useState([]);
-
-  const processmsg = (e) => {
-    setmsg(e.target.value);
-  };
-
-  const sendmsg = () => {
-    let newlist = [msg, ...list];
-    setlist(newlist);
-    setmsg("");
-    console.log(msg);
+  let [ajaxlist, setajaxlist] = useState([]);
+  const ajaxcall = async () => {
+    let url = `https://jsonplaceholder.typicode.com/posts`;
+    let response = await fetch(url);
+    let result = await response.json();
+    setajaxlist(result);
   };
   return (
     <div>
-      <h2>Input Practice</h2>
-      <input type="text" value={msg} onChange={processmsg} />
-      <input type="button" value="send" onClick={sendmsg} />
+      <div>
+        <h4></h4>
+        <input type="button" value="Ajax call" onClick={ajaxcall} />
 
-      {list.map((item) => (
-          <div>{item}</div>
+        {ajaxlist.map((item, index) => (
+          <div key={index}>{item.title}</div>
         ))}
-  
+      </div>
     </div>
   );
 }
