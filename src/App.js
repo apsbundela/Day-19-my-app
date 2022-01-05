@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+export default function App() {
+  let id = 1;
+  let name = "ayush";
+  let list = ["amul", "ayush"];
+  let obj = {id :2 ,name :"amul"}
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>id : {id}</h1>
+      <h2>Mera NAAM :{name}</h2>
+      <h2>{list}</h2>
+      <h2>{obj.name}{obj.id}</h2>
+      <h2>i am {name} my id is {id}</h2>
     </div>
   );
 }
-
-export default App;
