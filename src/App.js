@@ -1,24 +1,34 @@
+import { useState } from "react";
+
 export default function App() {
-  let list = [1, 2, 3, 34, 4, , 6, 7, 8, 9, 0, 2, 4, 65, 7];
   return (
     <div>
-      {list.map(() => (
-        <Mycomponent></Mycomponent>
-      ))}
-      ;
+      <Mycompenent></Mycompenent>
     </div>
   );
 }
 
-function Mycomponent() {
-  let color = "bg-success ";
+function Mycompenent() {
+  
+  let[counter,setcounter] = useState(1)
+
+  const increment = ()=>{
+
+    counter = counter+1;
+    setcounter(counter)
+  }
+
+  const decrement = ()=>{
+
+      counter = counter-1;
+      setcounter(counter);
+  }
+
   return (
-    <div className={color}>
-      <h2>Header</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nisi in
-        suscipit at rerum harum libero corporis blanditiis enim nulla.
-      </p>
+    <div>
+      <div><h1>{counter}</h1></div>
+      <input type="button" value="Counter &#128077;" onClick={increment}/>
+      <input type="button" value="Counter &#128078;" onClick={decrement}/>
     </div>
   );
 }
